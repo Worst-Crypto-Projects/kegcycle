@@ -1,14 +1,11 @@
 #include <blake2.h>
-#define DATASET_SIZE 2500000000
-#define DATABIT_SIZE 1
-uint64_t gendataset(uint64_t data) {
-  uint64_t* dataset = (uint64_t*)malloc(2500000000); // Initilise dataset in Ram (2.5 GB)
-  dataset[0] = data;
-  dataset[1] = aes(dataset[0],dataset[0]);
-  dataset[1] = blake2(dataset[1]);
-  for (uint8_t i = 2; i < DATASET_SIZE / DATABIT_SIZE; i++) {
-    dataset[i] = aes(dataset[i-1],dataset[i-2]);
-    dataset[i] = blake2(dataset[i]);
-  }
-  return dataset;
+#define DATASET_SIZE 2500000000 //in bytes
+#define HASH_BYTES 32 // Lenght of each hash
+
+for(uint32_t i=0; i<DATASET_SIZE/HASH_BYTES;i++){
+    calcDatasetItem(seed, i, &dataset[i*HASH_BYTES]);
 }
+void calcDatasetItem(uint8_t* seed, uint32_t itemNumber, uint8_t* out){
+    blake2s(out, 32, itemNumber, 4, seed, 32);
+}
+
