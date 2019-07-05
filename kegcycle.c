@@ -15,8 +15,8 @@ void rawCycle(uint64_t data, uint64_t output) {
     uint32_t data_32 = (uint32_t*) data;
     uint32_t data32Temp = data_32;
     crc32i(data_32);
-    aes(data_32, data);
+    aesb_single_round((uint8*)data_32, (uint8*)data_32, (uint8_t*)data);
     for (uint32_t i = 1; i < 10; i++) {
-        aes((uint8*)data_32, (uint8*)data_32, (uint8_t*)data);
+        aesb_single_round((uint8*)data_32, (uint8*)data_32, (uint8_t*)data);
     }
 }
