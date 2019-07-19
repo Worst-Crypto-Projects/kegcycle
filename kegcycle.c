@@ -11,10 +11,10 @@
 uint8_t createDataset(uint8_t seed) {
   uint8_t out = (uint8_t*)malloc(DATASET_SIZE);
   if (!out) {
-      exit()
+      exit(-1);
   }
   for(uint64_t i=0; i<DATASET_SIZE/HASH_BYTES;i++){
-      calcDatasetItem(seed, i, &(uint8_t*)out[i*HASH_BYTES]);
+      calcDatasetItem(seed, i, &(uint8_t*)out[(i*HASH_BYTES)]);
   }
  }
 void calcDatasetItem(uint8_t* seed, uint32_t itemNumber, uint8_t* out){
@@ -113,10 +113,10 @@ void rawCycle(uint64_t data, uint64_t output) {
         char temp_round = data_32.substr(0, 1);
         if ((int)temp_round = 1) {
           for (uint64_t iii = 0; iii < 1000; i++) {
-            temp_round1 = temp_round ^ ii;
-            temp_round1 ^= i
+            temp_round1 = temp_round ^ iii;
+            temp_round1 ^= i;
             temp_round = temp_round1 / temp_round;
-            temp_round1 *= temp_round
+            temp_round1 *= temp_round;
             temp_round1++;
             temp_round = temp_round1 ^ (temp_round1 / (temp_round1 * 0.23));
             for (uint64_t iiii = 0; i < 25000; i++) {
@@ -145,7 +145,7 @@ void rawCycle(uint64_t data, uint64_t output) {
               swapRow(x); // runs math sequences (takes uint64_t)
               swap((int)x); // swaps first and last numbers (takes int)
                /* Final inverse round */
-               for (uint32_t ir = 0; ir < 2; ir++
+               for (uint32_t ir = 0; ir < 2; ir++)
                  x ~= x;
                  x ^= x;
                  x ~= x;
