@@ -1,5 +1,5 @@
-#include <blake2.h>
-#include <aesb.c>
+#include "blake2.h"
+#include "aesb.c"
 #include <stdio.h>
 #include <math.h>
 
