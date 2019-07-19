@@ -1,4 +1,4 @@
-#include "blake2/blake2.h"
+#include "blake/blake2.h"
 #include "aesb.c"
 #include <stdio.h>
 #include <math.h>
