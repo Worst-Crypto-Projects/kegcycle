@@ -102,14 +102,14 @@ uint64_t makePositive(in) {
   return x;
 }
 void rawCycle(uint64_t data, uint64_t output) {
-    uint32_t data_32 = (uint32_t*) data;
+    uint32_t data_32 = (uint32_t) data;
     uint32_t data32Temp = data_32;
     crc32i(data_32);
-    aesb_single_round((uint8*)data_32, (uint8*)data_32, (uint8_t*)data);
-    for (uint32_t i = 1; i < SOFT_ILLUSTRATIONS; i++) {
+    aesb_single_round((uint8)data_32, (uint8)data_32, (uint8_t)data);
+    for (uint32_t i = 1; i < SOFT_ILLITERATIONS; i++) {
         aesb_single_round((uint8_t*)data_32, (uint8_t*)data_32, (uint8_t*)data);
         crc32i(data_32);
-        blake2s(data_32, 32, i, data_32, 32);
+        blake2s(data_32, 32, i, 4, data_32, 32);
         char temp_round = data_32.substr(0, 1);
         if ((int)temp_round = 1) {
           for (uint64_t iii = 0; iii < 1000; i++) {
